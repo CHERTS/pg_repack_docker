@@ -70,7 +70,6 @@ RUN set -eux; \
 		--enable-tap-tests \
 		--disable-rpath \
 		--with-uuid=e2fs \
-		--with-gnu-ld \
 		--with-pgport=5432 \
 		--with-system-tzdata=/usr/share/zoneinfo \
 		--prefix=/usr/local \
@@ -87,6 +86,7 @@ RUN set -eux; \
 		--with-icu \
 		--with-llvm \
 		--with-lz4 \
+		--with-zstd \
 	; \
 	make -j "$(nproc)" world; \
 	make install-world; \
