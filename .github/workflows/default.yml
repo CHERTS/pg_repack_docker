@@ -33,9 +33,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./12
-          load: true
+          load: false
           file: ./12/Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: cherts/pg-repack:1.4.5
       - name: Inspect image cherts/pg-repack:1.4.5
         run: |
