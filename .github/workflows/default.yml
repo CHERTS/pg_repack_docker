@@ -30,4 +30,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image
-        run: ./build.sh
+        uses: docker/build-push-action@v5
+        with:
+          context: ./12/
+          load: true
+          file: ./12/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: cherts/pg-repack:1.4.5
+      - name: Inspect
+        run: |
+          docker image inspect cherts/pg-repack:1.4.5
