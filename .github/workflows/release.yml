@@ -33,7 +33,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
-          context: ./12/
+          context: ./12
           file: ./12/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.4.5
@@ -44,7 +44,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
-          context: ./13/
+          context: ./13
           file: ./13/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.4.6
@@ -55,7 +55,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
-          context: ./14/
+          context: ./14
           file: ./14/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.4.7
@@ -66,7 +66,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
-          context: ./15/
+          context: ./15
           file: ./15/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.4.8
@@ -77,7 +77,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
-          context: ./16/
+          context: ./16
           file: ./16/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.5.0
