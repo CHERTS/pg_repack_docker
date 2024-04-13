@@ -16,6 +16,8 @@ function ctrl_c() {
     exit 1
 }
 
+#docker login -u XXXXX -p YYYYY
+
 for DATA in ${PG_REPACK[@]}; do
     PG_VER=$(echo "${DATA}" | awk -F',' '{print $1}')
     PGREPACK_VER=$(echo "${DATA}" | awk -F',' '{print $2}')
