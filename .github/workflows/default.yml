@@ -20,26 +20,57 @@ on:
       - "build.sh"
 
 jobs:
-  test:
+  github-job-12:
     runs-on: ubuntu-latest
     steps:
+      - name: Set variables
+        run: |
+          echo "PGREPACK_VERSION=1.4.5" >> $GITHUB_ENV
+          echo "PG_VERSION=12" >> $GITHUB_ENV
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Build image cherts/pg-repack:1.4.5
+      - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
         uses: docker/build-push-action@v5
         with:
-          context: ./12
-          load: false
-          file: ./12/Dockerfile
+          context: ./${{ env.PG_VERSION }}
+          load: true
+          file: ./${{ env.PG_VERSION }}/Dockerfile
           platforms: linux/amd64
-          tags: cherts/pg-repack:1.4.5
-      - name: Inspect image cherts/pg-repack:1.4.5
+          tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Inspect image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
         run: |
-          docker image inspect cherts/pg-repack:1.4.5
-      - name: Test image cherts/pg-repack:1.4.5
+          docker image inspect cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Test image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
         run: |
-          docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 --version
+          docker run -it --rm --name pg_repack cherts/pg-repack:${{ env.PGREPACK_VERSION }} --version
+  github-job-13:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variables
+        run: |
+          echo "PGREPACK_VERSION=1.4.6" >> $GITHUB_ENV
+          echo "PG_VERSION=13" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ./${{ env.PG_VERSION }}
+          load: true
+          file: ./${{ env.PG_VERSION }}/Dockerfile
+          platforms: linux/amd64
+          tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Inspect image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        run: |
+          docker image inspect cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Test image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        run: |
+          docker run -it --rm --name pg_repack cherts/pg-repack:${{ env.PGREPACK_VERSION }} --version
