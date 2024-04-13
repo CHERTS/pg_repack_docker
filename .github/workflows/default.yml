@@ -40,3 +40,6 @@ jobs:
       - name: Inspect image cherts/pg-repack:1.4.5
         run: |
           docker image inspect cherts/pg-repack:1.4.5
+      - name: Test image cherts/pg-repack:1.4.5
+        run: |
+          docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 --version
