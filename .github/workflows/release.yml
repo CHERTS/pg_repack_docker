@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ jobs:
     name: build-binary
     runs-on: ubuntu-latest
     steps:
-      - name: Git clone
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up QEMU

@@ -24,8 +24,9 @@ for DATA in ${PG_REPACK[@]}; do
     echo "Docker build image 'pg-repack:${PGREPACK_VER}', postgres v${PG_VER}..."
     docker build -t cherts/pg-repack:${PGREPACK_VER} --no-cache --progress=plain -f ${PG_VER}/Dockerfile ${PG_VER}
     if [ $? -eq 0 ]; then
-        echo "Docker push image 'pg-repack:${PGREPACK_VER}'..."
-        docker push cherts/pg-repack:${PGREPACK_VER}
+	echo "Done build image."
+        #echo "Docker push image 'pg-repack:${PGREPACK_VER}'..."
+        #docker push cherts/pg-repack:${PGREPACK_VER}
     else
         echo "ERROR: Failed build image 'pg-repack:${PGREPACK_VER}', postgres v${PG_VER}"
         exit 1

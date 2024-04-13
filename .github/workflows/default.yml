@@ -1,0 +1,31 @@
+---
+name: Default
+
+on:
+  push:
+    paths:
+      - "12/**"
+      - "13/**"
+      - "14/**"
+      - "15/**"
+      - "16/**"
+  pull_request:
+    paths:
+      - "12/**"
+      - "13/**"
+      - "14/**"
+      - "15/**"
+      - "16/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build image
+        run: build.sh
