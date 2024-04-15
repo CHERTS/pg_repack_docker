@@ -1,7 +1,6 @@
 # pg_repack docker image (using alpine linux)
 
-Docker image with 'pg_repack' (PostgreSQL extension) installed, can be run natively - or be used 'client-side' to run/invoke pg_repack functionality 
-for a PostgreSQL database with the extension installed.
+Docker image with 'pg_repack' (PostgreSQL extension) installed, can  be used 'client-side' to run/invoke pg_repack functionality for a PostgreSQL database with the extension installed.
 
 Reference: https://github.com/reorg/pg_repack
 
