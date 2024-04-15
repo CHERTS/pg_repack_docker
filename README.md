@@ -34,9 +34,24 @@ cd pg_repack_docker
 This image contains the pg_repack utility to run with the official images [postgres docker image](https://hub.docker.com/_/postgres/)
     
 This image may be required to run pg_repack on your computer if your postgres is running in cloud or in a container (kubernetes) that already has the pg_repack extension.
- 
+
 ```
 # use pg_repack v1.5.0
 docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 --version
-docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 -h X.X.X.X -U postgres --dbname=dbname --dry-run --table=table1 --only-indexes --no-superuser-check
+docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 -h X.X.X.X -U postgres --dbname=dbname --table=table1 --only-indexes --no-superuser-check --dry-run
 ```
+
+### Additional utilities in this image
+
+This image contains the ability to run additional utilities that come with postgres - psql, pgbench, pg_dump and pg_dumpall
+
+For example, we can run pgbench in our cloud database like this:
+```
+# use postgres v16
+# run init
+docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -i -s 10
+# run test
+docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -T 60 -j 4 -P 2
+# run drop test data
+docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -i I d
+
