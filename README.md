@@ -53,5 +53,5 @@ docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -
 # run test
 docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -T 60 -j 4 -P 2
 # run drop test data
-docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -i I d
+docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -i -I d
 
