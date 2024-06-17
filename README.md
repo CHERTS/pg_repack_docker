@@ -46,7 +46,7 @@ docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 -h X.X.X.X -U postgr
 
 ### Additional utilities in this image
 
-This image contains the ability to run additional utilities that come with postgres - psql, pgbench, pg_dump and pg_dumpall
+This image contains the ability to run additional utilities that come with postgres - psql, pgbench, pg_dump, pg_dumpall, pg_basebackup, pg_restore, pg_verifybackup and pg_controldata
 
 For example, we can run pgbench in our cloud database like this:
 ```
@@ -57,4 +57,4 @@ docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -
 docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -T 60 -j 4 -P 2
 # run drop test data
 docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 pgbench -h X.X.X.X -p 5432 -U postgres test -i -I d
-
+```
