@@ -13,6 +13,7 @@ This images follows the pg_repack releases + compatibility with PostgreSQL.
 
 | image | postgres | pg_repack |
 |-------|----------|-----------|
+| cherts/pg-repack:1.5.1 | 17       | 1.5.1     |
 | cherts/pg-repack:1.5.0 | 16       | 1.5.0     |
 | cherts/pg-repack:1.4.8 | 15       | 1.4.8     |
 | cherts/pg-repack:1.4.7 | 14       | 1.4.7     |

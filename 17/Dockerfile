@@ -1,9 +1,9 @@
 FROM alpine:3.20
 
-ENV PG_MAJOR 14
-ENV PG_VERSION 14.13
-ENV PG_SHA256 59aa3c4b495ab26a9ec69f3ad0a0228c51f0fe6facf3634dfad4d1197d613a56
-ENV PG_REPACK_VERSION 1.4.7
+ENV PG_MAJOR 17
+ENV PG_VERSION 17rc1
+ENV PG_SHA256 cef689e2de8c3d605d8406c065573b8d70859fc6f2a8d720b0d98a6d62ef16e8
+ENV PG_REPACK_VERSION 1.5.1
 
 ENV LANG en_US.utf8
 WORKDIR /pg_repack
@@ -51,6 +51,7 @@ RUN set -eux; \
 		zlib-dev \
 		icu-dev \
 		lz4-dev \
+		zstd-dev \
 		readline-dev \
 	; \
 	\
@@ -69,11 +70,9 @@ RUN set -eux; \
 		--enable-option-checking=fatal \
 		--build="$gnuArch" \
 		--enable-integer-datetimes \
-		--enable-thread-safety \
 		--enable-tap-tests \
 		--disable-rpath \
 		--with-uuid=e2fs \
-		--with-gnu-ld \
 		--with-pgport=5432 \
 		--with-system-tzdata=/usr/share/zoneinfo \
 		--prefix=/usr/local \
@@ -90,6 +89,7 @@ RUN set -eux; \
 		--with-icu \
 		--with-llvm \
 		--with-lz4 \
+		--with-zstd \
 	; \
 	make -j "$(nproc)" world-bin; \
 	make install-world-bin; \

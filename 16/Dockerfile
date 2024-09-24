@@ -51,10 +51,14 @@ RUN set -eux; \
 		zlib-dev \
 		icu-dev \
 		lz4-dev \
+		zstd-dev \
 		readline-dev \
 	; \
 	\
 	cd /usr/src/postgresql; \
+	awk '$1 == "#define" && $2 == "DEFAULT_PGSOCKET_DIR" && $3 == "\"/tmp\"" { $3 = "\"/var/run/postgresql\""; print; next } { print }' src/include/pg_config_manual.h > src/include/pg_config_manual.h.new; \
+	grep '/var/run/postgresql' src/include/pg_config_manual.h.new; \
+	mv src/include/pg_config_manual.h.new src/include/pg_config_manual.h; \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
 	wget -O config/config.guess 'https://git.savannah.gnu.org/cgit/config.git/plain/config.guess?id=7d3d27baf8107b630586c962c057e22149653deb'; \
 	wget -O config/config.sub 'https://git.savannah.gnu.org/cgit/config.git/plain/config.sub?id=7d3d27baf8107b630586c962c057e22149653deb'; \
@@ -88,8 +92,8 @@ RUN set -eux; \
 		--with-lz4 \
 		--with-zstd \
 	; \
-	make -j "$(nproc)" world; \
-	make install-world; \
+	make -j "$(nproc)" world-bin; \
+	make install-world-bin; \
 	make -C contrib install; \
 	\
 	runDeps="$( \
@@ -102,12 +106,12 @@ RUN set -eux; \
 	apk add --no-cache --virtual .postgresql-rundeps \
 		$runDeps \
 		bash \
-		su-exec \
 		tzdata \
 		zstd \
 		icu-data-full \
 		$([ "$(apk --print-arch)" != 'ppc64le' ] && echo 'nss_wrapper') \
 	; \
+	cd /usr/src; \
 	wget -O pg_repack.zip http://api.pgxn.org/dist/pg_repack/${PG_REPACK_VERSION}/pg_repack-${PG_REPACK_VERSION}.zip \
 	&& unzip pg_repack.zip || true && rm -f pg_repack.zip \
 	&& cd pg_repack-${PG_REPACK_VERSION} \
@@ -116,6 +120,7 @@ RUN set -eux; \
 	apk del --no-network .build-deps; \
 	cd /; \
 	rm -rf \
+		/usr/src/pg_repack-${PG_REPACK_VERSION} \
 		/usr/src/postgresql \
 		/usr/local/share/doc \
 		/usr/local/share/man \
@@ -123,7 +128,10 @@ RUN set -eux; \
 	\
 	pg_repack --version
 
-COPY docker_entrypoint.sh /bin/
+COPY docker_entrypoint.sh /bin
+
+RUN set -x \
+    chmod +x /bin/docker_entrypoint.sh
 
 ENTRYPOINT ["/bin/docker_entrypoint.sh"]
 CMD ["-no-superuser-check"]
