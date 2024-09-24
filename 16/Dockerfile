@@ -128,7 +128,10 @@ RUN set -eux; \
 	\
 	pg_repack --version
 
-COPY docker_entrypoint.sh /bin/
+COPY docker_entrypoint.sh /bin
+
+RUN set -x \
+    chmod +x /bin/docker_entrypoint.sh
 
 ENTRYPOINT ["/bin/docker_entrypoint.sh"]
 CMD ["-no-superuser-check"]
