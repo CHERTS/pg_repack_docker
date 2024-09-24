@@ -51,6 +51,7 @@ RUN set -eux; \
 		zlib-dev \
 		icu-dev \
 		lz4-dev \
+		zstd-dev \
 		readline-dev \
 	; \
 	\

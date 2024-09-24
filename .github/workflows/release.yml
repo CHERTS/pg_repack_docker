@@ -81,3 +81,14 @@ jobs:
           file: ./16/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.5.0
+
+      - name: Build and push image cherts/pg-repack:1.5.1
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          cache-from: type=gha,scope=pg-repack
+          cache-to: type=gha,mode=max,scope=pg-repack
+          context: ./17
+          file: ./17/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          tags: cherts/pg-repack:1.5.1

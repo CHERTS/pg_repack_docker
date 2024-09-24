@@ -1,9 +1,9 @@
 FROM alpine:3.20
 
-ENV PG_MAJOR 15
-ENV PG_VERSION 15.8
-ENV PG_SHA256 4403515f9a69eeb3efebc98f30b8c696122bfdf895e92b3b23f5b8e769edcb6a
-ENV PG_REPACK_VERSION 1.4.8
+ENV PG_MAJOR 17
+ENV PG_VERSION 17rc1
+ENV PG_SHA256 cef689e2de8c3d605d8406c065573b8d70859fc6f2a8d720b0d98a6d62ef16e8
+ENV PG_REPACK_VERSION 1.5.1
 
 ENV LANG en_US.utf8
 WORKDIR /pg_repack
@@ -71,7 +71,6 @@ RUN set -eux; \
 		--enable-tap-tests \
 		--disable-rpath \
 		--with-uuid=e2fs \
-		--with-gnu-ld \
 		--with-pgport=5432 \
 		--with-system-tzdata=/usr/share/zoneinfo \
 		--prefix=/usr/local \
