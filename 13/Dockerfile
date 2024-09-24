@@ -106,6 +106,7 @@ RUN set -eux; \
 		icu-data-full \
 		$([ "$(apk --print-arch)" != 'ppc64le' ] && echo 'nss_wrapper') \
 	; \
+	cd /usr/src; \
 	wget -O pg_repack.zip http://api.pgxn.org/dist/pg_repack/${PG_REPACK_VERSION}/pg_repack-${PG_REPACK_VERSION}.zip \
 	&& unzip pg_repack.zip || true && rm -f pg_repack.zip \
 	&& cd pg_repack-${PG_REPACK_VERSION} \
@@ -114,6 +115,7 @@ RUN set -eux; \
 	apk del --no-network .build-deps; \
 	cd /; \
 	rm -rf \
+		/usr/src/pg_repack-${PG_REPACK_VERSION} \
 		/usr/src/postgresql \
 		/usr/local/share/doc \
 		/usr/local/share/man \
