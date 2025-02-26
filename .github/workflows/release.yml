@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.4.5
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.4.6
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -78,7 +78,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.4.7
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -105,7 +105,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.4.8
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -132,7 +132,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.5.0
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -159,7 +159,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.5.1
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
+        env:
+          PG_REPACK_VERSION: 1.5.1
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -186,12 +188,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           logout: true
       - name: Build and push image cherts/pg-repack:1.5.2
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
+        env:
+          PG_REPACK_VERSION: 1.5.2
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
           context: ./17
-          file: ./17/Dockerfile.152
+          file: ./17/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.5.2

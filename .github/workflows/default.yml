@@ -36,7 +36,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -63,7 +63,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -90,7 +90,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -117,7 +117,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -144,7 +144,7 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -171,7 +171,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
+        env:
+          PG_REPACK_VERSION: ${{ env.PGREPACK_VERSION }}
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
@@ -198,11 +200,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
+        env:
+          PG_REPACK_VERSION: ${{ env.PGREPACK_VERSION }}
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
-          file: ./${{ env.PG_VERSION }}/Dockerfile.152
+          file: ./${{ env.PG_VERSION }}/Dockerfile
           platforms: linux/amd64
           tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
       - name: Inspect image cherts/pg-repack:${{ env.PGREPACK_VERSION }}

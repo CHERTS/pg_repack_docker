@@ -1,5 +1,7 @@
 FROM alpine:3.20
 
+LABEL org.opencontainers.image.authors="sleuthhound@gmail.com"
+
 ENV PG_MAJOR 12
 ENV PG_VERSION 12.22
 ENV PG_SHA256 8df3c0474782589d3c6f374b5133b1bd14d168086edbc13c6e72e67dd4527a3b
