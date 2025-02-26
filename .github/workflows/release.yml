@@ -160,8 +160,6 @@ jobs:
           logout: true
       - name: Build and push image cherts/pg-repack:1.5.1
         uses: docker/build-push-action@v6
-        env:
-          PG_REPACK_VERSION: 1.5.1
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
@@ -190,8 +188,6 @@ jobs:
           logout: true
       - name: Build and push image cherts/pg-repack:1.5.2
         uses: docker/build-push-action@v6
-        env:
-          PG_REPACK_VERSION: 1.5.2
         with:
           push: true
           cache-from: type=gha,scope=pg-repack
