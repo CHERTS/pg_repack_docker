@@ -168,3 +168,30 @@ jobs:
           file: ./17/Dockerfile
           platforms: linux/amd64,linux/arm64
           tags: cherts/pg-repack:1.5.1
+
+  Build-Pg-17-152:
+    name: Build-Docker-Pg-17-152
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          logout: true
+      - name: Build and push image cherts/pg-repack:1.5.2
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          cache-from: type=gha,scope=pg-repack
+          cache-to: type=gha,mode=max,scope=pg-repack
+          context: ./17
+          file: ./17/Dockerfile.152
+          platforms: linux/amd64,linux/arm64
+          tags: cherts/pg-repack:1.5.2

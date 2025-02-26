@@ -184,3 +184,30 @@ jobs:
       - name: Test image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
         run: |
           docker run --rm --name pg_repack cherts/pg-repack:${{ env.PGREPACK_VERSION }} --version
+  postgres-17-152:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set variables
+        run: |
+          echo "PGREPACK_VERSION=1.5.2" >> $GITHUB_ENV
+          echo "PG_VERSION=17" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        uses: docker/build-push-action@v5
+        with:
+          context: ./${{ env.PG_VERSION }}
+          load: true
+          file: ./${{ env.PG_VERSION }}/Dockerfile
+          platforms: linux/amd64
+          tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Inspect image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        run: |
+          docker image inspect cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+      - name: Test image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
+        run: |
+          docker run --rm --name pg_repack cherts/pg-repack:${{ env.PGREPACK_VERSION }} --version
