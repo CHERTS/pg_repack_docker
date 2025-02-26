@@ -47,7 +47,7 @@ docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 -h X.X.X.X -U postgr
 
 ### Additional utilities in this image
 
-This image contains the ability to run additional utilities that come with postgres - psql, pgbench, pg_dump, pg_dumpall, pg_basebackup, pg_restore, pg_verifybackup and pg_controldata
+This image contains the ability to run additional utilities that come with postgres: `psql`, `pgbench`, `pg_dump`, `pg_dumpall`, `pg_basebackup`, `pg_restore`, `pg_verifybackup`, `pg_controldata` and `pg_amcheck` (`pg_createsubscriber` and `pg_combinebackup` only PostgreSQL v17)
 
 For example, we can run pgbench in our cloud database like this:
 ```
