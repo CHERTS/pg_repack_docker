@@ -166,6 +166,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
+          build-args: PG_REPACK_VERSION=1.5.1
           context: ./17
           file: ./17/Dockerfile
           platforms: linux/amd64,linux/arm64
@@ -195,6 +196,7 @@ jobs:
           push: true
           cache-from: type=gha,scope=pg-repack
           cache-to: type=gha,mode=max,scope=pg-repack
+          build-args: PG_REPACK_VERSION=1.5.2
           context: ./17
           file: ./17/Dockerfile
           platforms: linux/amd64,linux/arm64

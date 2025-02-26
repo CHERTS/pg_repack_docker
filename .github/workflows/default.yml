@@ -177,6 +177,7 @@ jobs:
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
+          build-args: PG_REPACK_VERSION=${{ env.PGREPACK_VERSION }}
           file: ./${{ env.PG_VERSION }}/Dockerfile
           platforms: linux/amd64
           tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
@@ -206,6 +207,7 @@ jobs:
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
+          build-args: PG_REPACK_VERSION=${{ env.PGREPACK_VERSION }}
           file: ./${{ env.PG_VERSION }}/Dockerfile
           platforms: linux/amd64
           tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
