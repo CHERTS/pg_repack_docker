@@ -202,7 +202,7 @@ jobs:
         with:
           context: ./${{ env.PG_VERSION }}
           load: true
-          file: ./${{ env.PG_VERSION }}/Dockerfile
+          file: ./${{ env.PG_VERSION }}/Dockerfile.152
           platforms: linux/amd64
           tags: cherts/pg-repack:${{ env.PGREPACK_VERSION }}
       - name: Inspect image cherts/pg-repack:${{ env.PGREPACK_VERSION }}
