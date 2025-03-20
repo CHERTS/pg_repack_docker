@@ -43,7 +43,7 @@ This image may be required to run pg_repack on your computer if your postgres is
 ```
 # use pg_repack v1.5.0
 docker run -it --rm --name pg_repack cherts/pg-repack:1.5.0 --version
-
+# use dry-run mode
 docker run -it --rm --name pg_repack \
 -e PGPASSWORD=<password> -e "PGOPTIONS='-c idle_in_transaction_session_timeout=0'" \
 cherts/pg-repack:1.5.0 --host=X.X.X.X --username=postgres --dbname=dbname --table=table1 \
